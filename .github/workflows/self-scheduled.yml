@@ -23,7 +23,7 @@ jobs:
         machines: [multi-gpu-docker, single-gpu-docker]
     runs-on: ${{ matrix.machines }}
     container:
-      image: huggingface/transformers-all-latest-gpu
+      image: lysandrejik/transformers-all-latest-gpu-tokenizers-v0-12-1
       options: --gpus 0 --shm-size "16gb" --ipc host -v /mnt/cache/.cache/huggingface:/mnt/cache/
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -65,7 +65,7 @@ jobs:
         machines: [multi-gpu-docker, single-gpu-docker]
     runs-on: ${{ matrix.machines }}
     container:
-      image: huggingface/transformers-all-latest-gpu
+      image: lysandrejik/transformers-all-latest-gpu-tokenizers-v0-12-1
       options: --gpus 0 --shm-size "16gb" --ipc host -v /mnt/cache/.cache/huggingface:/mnt/cache/
     needs: setup
     steps:
@@ -96,7 +96,7 @@ jobs:
     name: Examples directory
     runs-on: [self-hosted, single-gpu-docker]
     container:
-      image: huggingface/transformers-all-latest-gpu
+      image: lysandrejik/transformers-all-latest-gpu-tokenizers-v0-12-1
       options: --gpus 0 --shm-size "16gb" --ipc host -v /mnt/cache/.cache/huggingface:/mnt/cache/
     needs: setup
     steps:
@@ -130,7 +130,7 @@ jobs:
         machines: [multi-gpu-docker, single-gpu-docker]
     runs-on: ${{ matrix.machines }}
     container:
-      image: huggingface/transformers-pytorch-gpu
+      image: lysandrejik/transformers-pytorch-gpu-tokenizers-v0-12-1
       options: --gpus 0 --shm-size "16gb" --ipc host -v /mnt/cache/.cache/huggingface:/mnt/cache/
     needs: setup
     steps:
@@ -165,7 +165,7 @@ jobs:
         machines: [multi-gpu-docker, single-gpu-docker]
     runs-on: ${{ matrix.machines }}
     container:
-      image: huggingface/transformers-tensorflow-gpu
+      image: lysandrejik/transformers-tensorflow-gpu-tokenizers-v0-12-1
       options: --gpus 0 --shm-size "16gb" --ipc host -v /mnt/cache/.cache/huggingface:/mnt/cache/
     needs: setup
     steps:
@@ -247,7 +247,7 @@ jobs:
         env:
           CI_SLACK_BOT_TOKEN: ${{ secrets.CI_SLACK_BOT_TOKEN }}
           CI_SLACK_CHANNEL_ID: ${{ secrets.CI_SLACK_CHANNEL_ID }}
-          CI_SLACK_CHANNEL_ID_DAILY: ${{ secrets.CI_SLACK_CHANNEL_ID_DAILY }}
+          CI_SLACK_CHANNEL_ID_DAILY: ${{ secrets.CI_SLACK_CHANNEL_DUMMY_TESTS }}
           CI_SLACK_CHANNEL_DUMMY_TESTS: ${{ secrets.CI_SLACK_CHANNEL_DUMMY_TESTS }}
         run: |
           pip install slack_sdk
